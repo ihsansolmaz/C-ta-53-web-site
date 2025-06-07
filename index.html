@@ -128,12 +128,13 @@
         }
     </style>
 <!-- BU KISIM F5 ATILINCA URL UZANTISINI SIFIRLIYOR-->
-  <script>
+ <script>
   window.addEventListener('load', function () {
-    if (window.location.hash === '#home') {
+    if (window.location.hash) {
       history.replaceState(null, '', window.location.pathname);
     }
   });
+</script>
     
 </script>
 </head>
