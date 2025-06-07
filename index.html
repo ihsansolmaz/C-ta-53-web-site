@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+
+
+<head>
+  <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ÇITA-53 İHA Türkiye | A.Ş © ">
+<meta name="twitter:description" content="Yenilikçi tasarımlar ve yazılım projeleri için buradayım. Foxly, Foxmatch ve daha fazlası!">
+<meta name="twitter:image" content="https://">
+  <meta property="og:title" content="ÇITA-53 İHA Türkiye | A.Ş © ">
+<meta property="og:description" content="Modern ve yaratıcı web tasarımlarıyla projelerinizi hayata geçiriyorum. Tailwind CSS, GSAP ve daha fazlasıyla dikkat çekici tasarımlar!">
+<meta property="og:image" content="https://">
+<meta property="og:url" content="https://cita53drone.info">
+<meta property="og:type"
+      content="website">
+   <meta name="description" content="Modern, estetik ve kullanıcı dostu web tasarımlarıyla markanızı öne çıkarıyorum. Tailwind CSS, GSAP ve HTML/CSS teknolojileriyle profesyonel çözümler sunuyorum.">
+    <meta name="keywords" content="web tasarım, modern web tasarım, yaratıcı tasarım, responsive tasarım, Tailwind CSS, GSAP animasyon, HTML CSS tasarım">
+    <meta name="author" content="ÇITA-53 İHA Türkiye">
+    <meta name="robots" content="index, follow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÇITA-53 İHA Türkiye A.Ş</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap">
+  <link rel="icon" href="./img/icon.png" type="image/x-icon">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B5CF6',
+                        secondary: '#4F46E5',
+                        dark: '#0F172A'
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": {
+                                transform: "translate(0px, 0px) scale(1)",
+                            },
+                            "33%": {
+                                transform: "translate(30px, -50px) scale(1.1)",
+                            },
+                            "66%": {
+                                transform: "translate(-20px, 20px) scale(0.9)",
+                            },
+                            "100%": {
+                                transform: "translate(0px, 0px) scale(1)",
+                            },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes floating-space {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+
+            20% {
+                transform: translate(15px, -25px) rotate(5deg) scale(1.05);
+            }
+
+            40% {
+                transform: translate(-20px, 15px) rotate(-3deg) scale(0.95);
+            }
+
+            60% {
+                transform: translate(10px, 20px) rotate(7deg) scale(1.02);
+            }
+
+            80% {
+                transform: translate(-15px, -10px) rotate(-5deg) scale(0.98);
+            }
+
+            100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+        }
+
+        .floating-icon {
+            animation: floating-space 15s ease-in-out infinite;
+            filter: brightness(0.7) drop-shadow(0 0 8px rgba(255, 255, 255, 0.1));
+            transition: all 0.5s ease;
+        }
+
+        .floating-icon:hover {
+            opacity: 0.9 !important;
+            filter: brightness(1.2) drop-shadow(0 0 12px rgba(255, 255, 255, 0.3));
+            transform: scale(1.3);
+        }
+        
+        #mobile-drawer {
+     touch-action: none; /* Dokunma hareketlerini tamamen JS ile yönet */
+   }
+
+        #cursor-blur {
+            position: fixed;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+            mix-blend-mode: screen;
+            transition: all 0.1s ease;
+            will-change: transform;
+        }
+
+        ::selection {
+            background: rgba(139, 92, 246, 0.5);
+            /* primary color with opacity */
+            color: white;
+        }
+
+        ::-moz-selection {
+            /* Firefox için */
+            background: rgba(139, 92, 246, 0.5);
+            color: white;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-dark text-white font-['Lexend']">
+<!-- Navbar -->
+<nav class="fixed w-full z-50 bg-dark/80 backdrop-blur-md border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div class="flex justify-between items-center">
+            <span class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                <a href="#home" class="hover:text-primary transition-colors">ÇITA-53</a>
+                <p class="text-xs">
+                    <a href="#home" class="hover:text-primary transition-colors">İHA Türkiye</a>
+                </p>
+            </span>
+
+            <button id="menu-toggle" class="lg:hidden text-white hover:text-primary transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+
+            <!-- Desktop menü -->
+            <div class="hidden lg:flex space-x-8 items-center">
+                <!-- ÇITA-53 Dropdown -->
+                <div class="relative group">
+                    <button class="hover:text-primary transition-colors flex items-center gap-1">
+                        ÇITA-53
+                        <svg class="w-4 h-4 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="absolute hidden group-hover:block pt-2 w-48">
+                        <div class="bg-dark/90 backdrop-blur-lg rounded-lg p-2 shadow-xl border border-gray-800">
+                            <a href="#staff" class="block px-4 py-2 hover:bg-primary/20 rounded-md">Kadromuz</a>
+                            <a href="#success" class="block px-4 py-2 hover:bg-primary/20 rounded-md">Başarılarımız</a>
+                           <!-- <a href="#hobbie" class="block px-4 py-2 hover:bg-primary/20 rounded-md">Hobilerim</a> -->
+                           
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#about" class="hover:text-primary transition-colors">Hakkımızda</a>
+                <a href="#contact" class="hover:text-primary transition-colors">İletişim</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobil Menü 
+<div id="mobile-drawer" class="fixed bottom-0 left-0 right-0 w-full transform translate-y-full transition-transform duration-300 ease-in-out z-50 bg-dark/95 backdrop-blur-md rounded-t-2xl shadow-xl border-t border-gray-800">
+    <div class="w-full flex justify-center items-center py-2 cursor-pointer" id="drawer-handle">
+        <div class="w-12 h-1 bg-gray-600 rounded-full"></div>
+    </div>
+    
+    <div class="flex flex-col p-6 pt-2 space-y-2">
+         Mobil Dropdown 
+        <div class="accordion-item">
+            <button class="accordion-header flex items-center justify-between w-full py-3 px-4 rounded-lg bg-gray-800/50">
+                <span class="flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                    Portfolio
+                </span>
+            </button>
+            <div class="accordion-content hidden pl-6">
+                <a href="https://foxly.com.tr/#projects" class="block py-2">Projeler</a>
+                <a href="https://foxly.com.tr/#hobbie" class="block py-2">Hobilerim</a>
+                <a href="https://foxly.com.tr/#skills" class="block py-2">Yetenekler</a>
+            </div>
+        </div>
+
+     <a href="#about" class="flex items-center gap-2 py-3 px-4 rounded-lg bg-gray-800/50 hover:bg-primary/20 hover:text-primary transition-all duration-200">
+     Fox simgesi ekledim 
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+        <path d="M12 2C9.5 2 7 5 7 8C7 10 9 11 9 13C9 14 7 15 7 17C7 19 9 20 9 20C9 20 10 20 10 19C10 18 10.5 17 12 17C13.5 17 14 18 14 19C14 20 15 20 15 20C15 20 17 19 17 17C17 15 15 14 15 13C15 11 17 10 17 8C17 5 14.5 2 12 2Z" stroke="white" stroke-width="2" fill="none"/>
+    </svg>
+     "Foxware" yazısı 
+    <span class="text-white font-semibold">Foxware</span>
+</a>
+        <a href="#contact" class="flex items-center gap-2 py-3 px-4 rounded-lg bg-gray-800/50 hover:bg-primary/20 hover:text-primary transition-all duration-200">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <span>İletişim</span>
+        </a>
+    </div>
+</div>-->
+
+<!-- Overlay -->
+<div id="drawer-overlay" class="fixed inset-0 bg-black opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out z-40"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const drawerHandle = document.getElementById('drawer-handle');
+        const mobileDrawer = document.getElementById('mobile-drawer');
+        const overlay = document.getElementById('drawer-overlay');
+        const accordionHeader = document.querySelector('.accordion-header');
+        const accordionContent = document.querySelector('.accordion-content');
+        
+        let isDrawerOpen = false;
+        let startY = null;
+        let initialTransform = 0;
+
+        function openDrawer() {
+            mobileDrawer.classList.remove('translate-y-full');
+            overlay.classList.add('opacity-50');
+            overlay.classList.remove('pointer-events-none');
+            document.body.classList.add('overflow-hidden');
+            isDrawerOpen = true;
+        }
+        
+        function closeDrawer() {
+            mobileDrawer.classList.add('translate-y-full');
+            overlay.classList.remove('opacity-50');
+            overlay.classList.add('pointer-events-none');
+            document.body.classList.remove('overflow-hidden');
+            isDrawerOpen = false;
+        }
+        
+        // Dokunma olayları için yeni yaklaşım
+        function getTranslateY(element) {
+            const style = window.getComputedStyle(element);
+            const matrix = new DOMMatrix(style.transform);
+            return matrix.m42;
+        }
+
+        function handleTouchStart(e) {
+            if (!isDrawerOpen) return;
+            
+            startY = e.touches[0].clientY;
+            initialTransform = getTranslateY(mobileDrawer);
+            mobileDrawer.classList.remove('transition-transform');
+        }
+
+        function handleTouchMove(e) {
+            if (!isDrawerOpen || startY === null) return;
+            
+            const currentY = e.touches[0].clientY;
+            const deltaY = currentY - startY;
+            const newTranslate = Math.max(0, initialTransform + deltaY);
+
+            mobileDrawer.style.transform = `translateY(${newTranslate}px)`;
+        }
+
+        function handleTouchEnd() {
+            if (!isDrawerOpen || startY === null) return;
+            
+            const currentTranslate = getTranslateY(mobileDrawer);
+            mobileDrawer.classList.add('transition-transform');
+            mobileDrawer.style.transform = '';
+
+            if (currentTranslate > 200) { // Eşik değeri 100px
+                closeDrawer();
+            } else {
+                mobileDrawer.classList.remove('translate-y-full');
+            }
+
+            startY = null;
+            initialTransform = 0;
+        }
+
+        // Accordion için açma kapama işlemi
+        accordionHeader.addEventListener('click', () => {
+            accordionContent.classList.toggle('hidden');
+        });
+
+        // Event Listeners
+        menuToggle.addEventListener('click', openDrawer);
+        drawerHandle.addEventListener('click', closeDrawer);
+        overlay.addEventListener('click', closeDrawer);
+        
+        mobileDrawer.addEventListener('touchstart', handleTouchStart, { passive: false });
+        mobileDrawer.addEventListener('touchmove', handleTouchMove, { passive: false });
+        mobileDrawer.addEventListener('touchend', handleTouchEnd);
+
+        // Menü linklerine tıklama
+        mobileDrawer.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeDrawer);
+        });
+    });
+</script>
+
+
+
+    <header class="min-h-screen relative flex items-center justify-center overflow-hidden" id="home">
+
+        <div class="absolute inset-0 z-0">
+
+            <div class="absolute inset-0 bg-gradient-to-b from-dark/90 to-dark"></div>
+            <img src="https://source.unsplash.com/random/1920x1080/?dark,tech" class="w-full h-full object-cover"
+                alt="background">
+
+            <div class="absolute inset-0 overflow-hidden">
+                <div
+                    class="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-full blur-3xl animate-blob">
+                </div>
+                <div
+                    class="absolute top-1/2 -right-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-blob animation-delay-2000">
+                </div>
+                <div
+                    class="absolute bottom-20 left-1/3 w-48 h-48 bg-secondary/20 rounded-full blur-3xl animate-blob animation-delay-4000">
+                </div>
+
+                <div class="absolute inset-0"
+                    style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0); background-size: 40px 40px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="relative z-10 text-center space-y-8 max-w-3xl mx-auto px-4">
+            <h1 class="text-6xl md:text-7xl font-bold opacity-0 leading-tight" id="title">
+                <span class="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                    ÇITA-53 İHA Türkiye
+                </span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 opacity-0" id="subtitle">
+                Afet Yönetimlerinin Yeni Yüzü
+            </p>
+            <button
+                class="bg-gradient-to-r from-primary to-secondary px-8 py-3 rounded-full text-white font-medium hover:shadow-lg hover:shadow-primary/25 transition-all duration-100 opacity-0"
+                id="cta">
+                <a href="#about" class="hover:text-primary transition-colors">Keşfet</a>
+            </button>
+        </div>
+    </header>
+
+    <section id="about" class="py-32 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-25">
+            <div class="absolute top-1/4 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-1/4 left-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="max-w-3xl mx-auto space-y-8">
+                <h2 class="text-5xl font-bold text-center">
+                    <span class="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                        Merhaba, Biz ÇITA-53 Team!
+                    </span>
+                </h2>
+
+                <p class="text-gray-400 leading-relaxed text-center text-lg">
+                    Biz Afet Bölgelerinde Arama-Kurtarma ve Harici Operasyonlarda İnsan Canını Riske Atmadan Operasyonlar Yapılabilmesi İçin Çalışıyoruz. 
+                </p>
+
+                <div class="grid grid-cols-2 gap-6 py-6">
+                    <div class="bg-gray-800/50 backdrop-blur-sm p-4 rounded-xl border border-gray-700">
+                        <div
+                            class="text-3xl font-bold bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                            1+</div>
+                        <div class="text-gray-400">Yıl Deneyim</div>
+                    </div>
+                    <div class="bg-gray-800/50 backdrop-blur-sm p-4 rounded-xl border border-gray-700">
+                        <div
+                            class="text-3xl font-bold bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                            3+</div>
+                        <div class="text-gray-400">Alınan Ödül</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div
+                        class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700/50 hover:border-primary/50 transition-colors">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div
+                                class="w-8 h-8 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <span class="text-gray-300">Modüler Parçalar</span>
+                        </div>
+                            <div class="text-center">
+                                <p class="text-gray-400 text-sm">Projemizde vakit kaybı yaşanmaması için modüler operasyonel parçalar kullanmaktayız. Bu parçalardan gerekli parçanın montajı sonrası operasyon sağlanmaktadır.</p>
+                         </div>
+                    </div>
+
+                    <div
+                        class="bg-gray-800/30 backdrop-blur-sm p-6 rounded-xl border border-gray-700/50 hover:border-primary/50 transition-colors">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div
+                                class="w-8 h-8 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <span class="text-gray-300">Eşsiz Tasarım</span>
+                        </div>
+                            <div class="text-center">
+                                <p class="text-gray-400 text-sm">6 Motorlu ergonomik şase zorlu hava şartlarında operasyonların sorunsuz tamamlanabilmesi için tasarlanmıştır.</p>
+                        </div>
+                    </div>
+
+                    
+                    <div
+                    
+                        class="bg-gray-800/30 backdrop-blur-sm p-6 rounded-xl border border-gray-700/50 hover:border-primary/50 transition-colors">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div
+                                class="w-8 h-8 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <span class="text-gray-300">Verimli Performans</span>
+                        </div>
+                            <div class="text-center">
+                                <p class="text-gray-400 text-sm">Tasarlanan modüler parçalar sayesinde insan canını ve sağlığını riske atmadan verimli operasyonlar yapabilmekteyiz.</p>
+                        </div>
+                    </div>
+                </div>
+
+               
+<!-- KADRO KISMI -->
+
+                <section id="staff" class="py-32">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <h2 class="text-5xl font-bold mb-16 text-center">
+                            <span class="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                                Kadromuz
+                            </span>
+                        </h2>
+                       
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="project-card group">
+                                <a href="./ihsansolmaz.html">
+                                <div
+                                    class="bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-800 hover:border-primary/50 transition-all duration-300">
+                                    <div
+                                        class="h-48 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 mb-6 overflow-hidden">
+                                        <img src="./staff-img/ihsansolmaz.jpg"
+                                            class="w-full h-full object-cover opacity-75 group-hover:scale-110 transition-transform duration-300 m-auto"
+                                            alt="project">
+                                    </div>
+                                    <h3
+                                        class="text-2x1 font-bold mb-3 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                                        <p style="text-align: center">ihsan SOLMAZ</p>
+                                    </h3>
+                                    <div class="text-center">
+                                        <p class="text-gray-400">İhsan Solmaz, Özel Adem Ceylan Final Mesleki ve Tekni...</p></a>
+                                    </div>
+                                </div>
+                            </div>
+                        
+            
+                            <div class="project-card group">
+                                <a href="./yunusemreerdogan.html">
+                                <div
+                                    class="bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-800 hover:border-primary/50 transition-all duration-300">
+                                    <div
+                                        class="h-48 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 mb-6 overflow-hidden">
+                                        <img src="./staff-img/yunusemreerdogan.jpg"
+                                            class="w-full h-full object-cover opacity-75 group-hover:scale-110 transition-transform duration-300 m-auto"
+                                            alt="project">
+                                    </div>
+                                    <h3
+                                        class="text-2x1 font-bold mb-3 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                                        <p style="text-align: center">Yunus Emre Erdoğan</p>
+                                    </h3>
+                                    <div class="text-center">
+                                        <p class="text-gray-400">Yunus Emre Erdoğan, Özel Adem Cey...</p></a>
+                                    </div>
+                                </div>
+                            </div>
+                       
+            
+                            <div class="project-card group">
+                                <a href="./omercengel.html">
+                                <div
+                                    class="bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-800 hover:border-primary/50 transition-all duration-300">
+                                    <div
+                                        class="h-48 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 mb-6 overflow-hidden">
+                                        <img src="./staff-img/omercengel.jpg"
+                                            class="w-full h-full object-cover opacity-75 group-hover:scale-110 transition-transform duration-300 m-auto"
+                                            alt="project">
+                                    </div>
+                                    <h3
+                                        class="text-2x1 font-bold mb-3 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                                        <p style="text-align: center">Ömer Çengel</p>
+                                    </h3>
+                                    <div class="text-center">
+                                        <p class="text-gray-400">Ömer Çengel, Özel Adem Ceylan Final Mesleki ve Tekni...</p></a>
+                                    </div>
+                                </div>
+                            </div>
+                        
+
+                        
+                            <div class="project-card group">
+                                <a href="./furkanyigitgarip.html">
+                                <div
+                                    class="bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-800 hover:border-primary/50 transition-all duration-300">
+                                    <div
+                                        class="h-48 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 mb-6 overflow-hidden">
+                                        <img src="./staff-img/furkanyigitgarip.jpg"
+                                            class="w-full h-full object-cover opacity-75 group-hover:scale-110 transition-transform duration-300 m-auto"
+                                            alt="project">
+                                    </div>
+                                    <h3
+                                        class="text-2x1 font-bold mb-3 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                                        <p style="text-align: center">Furkan Yiğit Garip</p>
+                                    </h3>
+                                    <div class="text-center">
+                                        <p class="text-gray-400">Furkan Yiğit Garip, Özel Adem Ceyla...</p></a>
+                                    </div>
+                                </div>
+                            </div>
+                        
+
+                            <div class="project-card group">
+                                <a href="./muhammedsemihbayram.html">
+                                <div
+                                    class="bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-800 hover:border-primary/50 transition-all duration-300">
+                                    <div
+                                        class="h-48 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 mb-6 overflow-hidden">
+                                        <img src="./staff-img/muhammedsemihbayram.jpg"
+                                            class="w-full h-full object-cover opacity-75 group-hover:scale-110 transition-transform duration-300 m-auto"
+                                            alt="project">
+                                    </div>
+                                    <h3
+                                        class="text-2x1 font-bold mb-3 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                                        <p style="text-align: center">Muhammed Semih Bayram</p>
+                                    </h3>
+                                    <div class="text-center">
+                                        <p class="text-gray-400">Muhammed Semih Bayram, Özel Ad...</p></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+    <!-- KADRO KISMI BİTİŞİ-->
+
+
+    
+    <section id="success" class="py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold mb-16 text-center">
+                <span class="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                    Başarılarımız
+                </span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card group">
+                    <div
+                        class="bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-800 hover:border-primary/50 transition-all duration-300">
+                        <div
+                            class="h-48 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 mb-6 overflow-hidden">
+                            <img src="./img/itüroikincilik.jpg"
+                                class="w-full h-full object-cover opacity-75 group-hover:scale-110 transition-transform duration-300 m-auto"
+                                alt="project">
+                        </div>
+                        <h3
+                            class="text-2xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                            İtüro ikincilik Ödülü</h3>
+                        <p class="text-gray-400">İstanbul Teknik Üniversitesi'nin Düzenlemiş Olduğu 2025 İTÜ Robot Olimpiyatları'nda İnovasyon Arena Kategorisinde 2.lik Ödülü Almaya Hak Kazanmıştır.</p>
+                    </div>
+                </div>
+
+                <div class="project-card group">
+                    <div
+                        class="bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-800 hover:border-primary/50 transition-all duration-300">
+                        <div
+                            class="h-48 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 mb-6 overflow-hidden">
+                            <img src="./img/toyotateknikproje.jpg"
+                                class="w-full h-full object-cover opacity-75 group-hover:scale-110 transition-transform duration-300 m-auto"
+                                alt="project">
+                        </div>
+                        <h3
+                            class="text-2xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                            Toyota Teknik Proje Yarışması Üçüncülük Ödülü </h3>
+                        <p class="text-gray-400">Projemiz Kocaeli birincisi olarak gittiği, Sakarya İl Millî Eğitim Müdürlüğü
+                             ve Toyota Otomotiv Sanayi A.Ş. iş birliğinde düzenlenen Toyota Teknik Proje Yarışması'nda Üçüncülük Ödülü Almaya Hak Kazanmıştır. </p>
+                    </div>
+                </div>
+                
+                <div class="project-card group">
+                    <div
+                        class="bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-800 hover:border-primary/50 transition-all duration-300">
+                        <div
+                            class="h-48 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 mb-6 overflow-hidden">
+                            <img src="./img/beeadvisedanışmanlık.jpg"
+                                class="w-full h-full object-cover opacity-75 group-hover:scale-110 transition-transform duration-300 m-auto"
+                                alt="project">
+                        </div>
+                        <h3
+                            class="text-2xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                            BeeAdvise Danışmanlık Ödülü</h3>
+                        <p class="text-gray-400">İstanbul Teknik Üniversitesi'nin Düzenlemiş Olduğu 2025 İTÜ Robot Olimpiyatları'nda Kategori Farketmeksizin Bee Advise Tarafından
+                             Değerlendirilen Projeler Arasında 1. Şeçilerek Danışmanlık Ödülü Almaya Hak Kazanmıştır.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <!--
+    <section class="py-20 bg-gray-900/50" id="skills">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                        Teknoloji Stack'im
+                    </span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Kullandığım teknolojiler ve programlama dilleri
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div
+                    class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700 hover:border-primary/50 transition-colors group">
+                    <h3
+                        class="text-xl font-semibold mb-4 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                        Ana Teknolojiler</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700/50 transition-colors">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg"
+                                class="w-8 h-8" alt="HTML5">
+                            <span class="text-gray-300 group-hover:text-white transition-colors">HTML5</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700/50 transition-colors">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg"
+                                class="w-8 h-8" alt="CSS3">
+                            <span class="text-gray-300 group-hover:text-white transition-colors">CSS3</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700/50 transition-colors">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
+                                class="w-8 h-8" alt="JavaScript">
+                            <span class="text-gray-300 group-hover:text-white transition-colors">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700 hover:border-primary/50 transition-colors group">
+                    <h3
+                        class="text-xl font-semibold mb-4 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                        Temel Düzey</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700/50 transition-colors">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg"
+                                class="w-8 h-8" alt="Java">
+                            <div class="flex flex-col">
+                                <span class="text-gray-300 group-hover:text-white transition-colors">Java</span>
+                                <span class="text-xs text-gray-500">Temel Seviye</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700/50 transition-colors">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
+                                class="w-8 h-8" alt="Python">
+                            <div class="flex flex-col">
+                                <span class="text-gray-300 group-hover:text-white transition-colors">Python</span>
+                                <span class="text-xs text-gray-500">Temel Seviye</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700 hover:border-primary/50 transition-colors group">
+                    <h3
+                        class="text-xl font-semibold mb-4 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                        Geliştirme Araçları</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700/50 transition-colors">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/intellij/intellij-original.svg"
+                                class="w-8 h-8" alt="IntelliJ IDEA">
+                            <span class="text-gray-300 group-hover:text-white transition-colors">IntelliJ IDEA</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700/50 transition-colors">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg"
+                                class="w-8 h-8" alt="VS Code">
+                            <span class="text-gray-300 group-hover:text-white transition-colors">VS Code</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700/50 transition-colors">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pycharm/pycharm-original.svg"
+                                class="w-8 h-8" alt="PyCharm">
+                            <span class="text-gray-300 group-hover:text-white transition-colors">PyCharm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>  -->
+
+    
+<!-- 
+    <section class="py-32 relative bg-gray-900/30" id="hobbie">
+        <div class="absolute inset-0 opacity-25">
+            <div class="absolute top-1/4 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold">
+                    <span class="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                        Hobilerim
+                    </span>
+                </h2>
+                <p class="text-gray-400 mt-4">Boş zamanlarımda neler yapıyorum?</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div
+                    class="bg-gray-800/30 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-primary/50 transition-all duration-300">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+                            </svg>
+                        </div>
+                        <h3
+                            class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                            Oyunlar</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div
+                            class="group flex items-center space-x-4 p-4 bg-gray-800/30 rounded-xl hover:bg-gray-700/30 transition-colors">
+                            <img src="https://www.minecraft.net/content/dam/games/minecraft/key-art/Games_Subnav_Minecraft-300x465.jpg"
+                                alt="Minecraft" class="w-12 h-12 rounded-lg object-cover">
+                            <div>
+                                <h4 class="text-white group-hover:text-primary transition-colors">Minecraft</h4>
+                                <p class="text-sm text-gray-400">Survival & Creative</p>
+                            </div>
+                        </div>
+                        <div
+                            class="group flex items-center space-x-4 p-4 bg-gray-800/30 rounded-xl hover:bg-gray-700/30 transition-colors">
+                            <img src="./assets/img/valorant-logo.png" alt="Valorant"
+                                class="w-12 h-12 rounded-lg object-cover">
+                            <div>
+                                <h4 class="text-white group-hover:text-primary transition-colors">Valorant</h4>
+                                <p class="text-sm text-gray-400">Competitive FPS</p>
+                            </div>
+                        </div>
+                        <div
+                            class="group flex items-center space-x-4 p-4 bg-gray-800/30 rounded-xl hover:bg-gray-700/30 transition-colors">
+                            <img src="./img/gta-logo.jpg" alt="GTA V" class="w-12 h-12 rounded-lg object-cover">
+                            <div>
+                                <h4 class="text-white group-hover:text-primary transition-colors">GTA V</h4>
+                                <p class="text-sm text-gray-400">Open World Adventure</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-gray-800/30 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-primary/50 transition-all duration-300">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
+                            </svg>
+                        </div>
+                        <h3
+                            class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                            Diziler</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div
+                            class="group flex items-center space-x-4 p-4 bg-gray-800/30 rounded-xl hover:bg-gray-700/30 transition-colors">
+                            <img src="https://m.media-amazon.com/images/M/MV5BNDJkYzY3MzMtMGFhYi00MmQ4LWJkNTgtZGNiZWZmMTMxNzdlXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX1000_.jpg"
+                                alt="La Casa De Papel" class="w-12 h-12 rounded-lg object-cover">
+                            <div>
+                                <h4 class="text-white group-hover:text-primary transition-colors">La Casa De Papel</h4>
+                                <p class="text-sm text-gray-400">Aksiyon, Suç, Dram</p>
+                            </div>
+                        </div>
+                        <div
+                            class="group flex items-center space-x-4 p-4 bg-gray-800/30 rounded-xl hover:bg-gray-700/30 transition-colors">
+                            <img src="./assets/img/the-100.jpg" alt="The 100" class="w-12 h-12 rounded-lg object-cover">
+                            <div>
+                                <h4 class="text-white group-hover:text-primary transition-colors">The 100</h4>
+                                <p class="text-sm text-gray-400">Bilim Kurgu, Dram</p>
+                            </div>
+                        </div>
+                        <div
+                            class="group flex items-center space-x-4 p-4 bg-gray-800/30 rounded-xl hover:bg-gray-700/30 transition-colors">
+                            <img src="./assets/img/berlin.jpg" alt="Berlin" class="w-12 h-12 rounded-lg object-cover">
+                            <div>
+                                <h4 class="text-white group-hover:text-primary transition-colors">Berlin</h4>
+                                <p class="text-sm text-gray-400">Aksiyon, Suç, Dram</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </section>  -->
+    
+
+    <section id="contact" class="py-20 bg-gradient-to-b from-gray-900/50 to-gray-950/70 backdrop-blur-xl">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="bg-gradient-to-r from-violet-400 to-indigo-500 text-transparent bg-clip-text">
+                        İletişim Bilgileri
+                    </span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Sosyal medya hesapları üzerinden bizleri takip edebilir veya direk mesaj atabilirsiniz.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-1">
+                    <div class="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50">
+                        <h3 class="text-xl font-semibold text-gray-200 mb-6">Hızlı İletişim</h3>
+                        <div class="space-y-4">
+                            <a href="mailto:cita53drone@gmail.com"
+                                class="flex items-center space-x-3 text-gray-300 hover:text-violet-400 transition-colors group">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-gray-700/50 flex items-center justify-center group-hover:bg-gray-700/70">
+                                    <img src="https://cdn.simpleicons.org/gmail/white" class="w-5 h-5" alt="Email" />
+                                </div>
+                                <span>cita53drone@gmail.com</span>
+                            </a>
+                            <!-- Discord 
+                            <a href="###"
+                                class="flex items-center space-x-3 text-gray-300 hover:text-violet-400 transition-colors group">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-gray-700/50 flex items-center justify-center group-hover:bg-gray-700/70">
+                                    <img src="https://cdn.simpleicons.org/discord/white" class="w-5 h-5"
+                                        alt="Discord" />
+                                </div>
+                                <span>@bestofsheep</span>
+                            </a>  -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2">
+                    <div class="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50">
+                        <h3 class="text-xl font-semibold text-gray-200 mb-6">Sosyal Medya</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                            <a href="https://x.com/cita53drone"
+                                class="flex flex-col items-center p-4 rounded-lg hover:bg-gray-700/50 transition-colors group">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-gray-700/50 flex items-center justify-center group-hover:bg-gray-700/70 mb-2">
+                                    <img src="https://cdn.simpleicons.org/x/white" class="w-6 h-6" alt="Twitter" />
+                                </div>
+                                <span class="text-gray-300 group-hover:text-violet-400 text-sm">Twitter</span>
+                            </a>
+
+                            <a href="https://www.youtube.com/@cita53drone"
+                                class="flex flex-col items-center p-4 rounded-lg hover:bg-gray-700/50 transition-colors group">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-gray-700/50 flex items-center justify-center group-hover:bg-gray-700/70 mb-2">
+                                    <img src="https://cdn.simpleicons.org/youtube/white" class="w-6 h-6"
+                                        alt="YouTube" />
+                                </div>
+                                <span class="text-gray-300 group-hover:text-violet-400 text-sm">YouTube</span>
+                            </a>
+
+                            <a href="https://www.instagram.com/cita53drone/"
+                                class="flex flex-col items-center p-4 rounded-lg hover:bg-gray-700/50 transition-colors group">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-gray-700/50 flex items-center justify-center group-hover:bg-gray-700/70 mb-2">
+                                    <img src="https://cdn.simpleicons.org/instagram/white" class="w-6 h-6"
+                                        alt="Instagram" />
+                                </div>
+                                <span class="text-gray-300 group-hover:text-violet-400 text-sm">Instagram</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gradient-to-b from-gray-900/80 to-gray-950/90 backdrop-blur-xl border-t border-gray-800/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="space-y-4 text-center md:text-left">
+                    <div class="flex flex-col items-center md:items-start">
+                        <span
+                            class="text-2xl font-bold bg-gradient-to-r from-violet-400 to-indigo-500 text-transparent bg-clip-text">
+                            ÇITA-53
+                        </span>
+                        <span class="text-[0.7rem] text-gray-400 uppercase tracking-[0.2em] font-light">
+                             İHA Türkiye
+                        </span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Afet Bölgelerinde Arama-Kurtarma ve Harici Operasyonlarda İnsan Canını Riske Atmadan Operasyonlar Yapılabilmesi İçin Çalışıyoruz.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-sm font-medium text-violet-400 uppercase tracking-wider text-center md:text-left">
+                        Hızlı Bağlantılar</h3>
+                    <ul class="space-y-2 text-center md:text-left">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Ana Sayfa</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">Hakkımızda</a></li>
+                        <li><a href="#staff" class="text-gray-400 hover:text-white transition-colors">Projeler</a>
+                        </li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">İletişim</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-sm font-medium text-violet-400 uppercase tracking-wider text-center md:text-left">
+                        xxx</h3>
+                    <ul class="space-y-2 text-center md:text-left">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">x</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">x</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">x</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800/50 my-8"></div>
+
+            <div class="text-center">
+                <div class="text-gray-400 text-sm">
+                    © 2025 ÇITA-53 İHA Türkiye. Tüm hakları saklıdır.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cursor-blur"
+        class="fixed w-64 h-64 pointer-events-none opacity-20 bg-gradient-to-r from-primary to-secondary rounded-full blur-3xl">
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        const tl = gsap.timeline();
+        tl.to("#title", {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 0.5
+        })
+            .to("#subtitle", {
+                opacity: 1,
+                y: 0,
+                duration: 1
+            }, "-=0.5")
+            .to("#cta", {
+                opacity: 1,
+                y: 0,
+                duration: 1
+            }, "-=0.5");
+
+        gsap.utils.toArray(".project-card").forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top bottom-=100",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                delay: i * 0.2
+            });
+        });
+
+        gsap.from("#contact > div", {
+            scrollTrigger: {
+                trigger: "#contact",
+                start: "top bottom-=100",
+                toggleActions: "play none none reverse"
+            },
+            opacity: 0,
+            y: 50,
+            duration: 0.8
+        });
+
+        const cursor = document.getElementById('cursor-blur');
+
+        document.addEventListener('mousemove', (e) => {
+            requestAnimationFrame(() => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+        });
+
+
+        gsap.from("#about .space-y-8", {
+            scrollTrigger: {
+                trigger: "#about",
+                start: "top center",
+                toggleActions: "play none none reverse"
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1
+        });
+
+        gsap.from("#about .grid-cols-2 > div", {
+            scrollTrigger: {
+                trigger: "#about .grid-cols-2",
+                start: "top center",
+                toggleActions: "play none none reverse"
+            },
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            stagger: 0.2
+        });
+
+        gsap.from("#about .grid-cols-3 > div", {
+            scrollTrigger: {
+                trigger: "#about .grid-cols-3",
+                start: "top center",
+                toggleActions: "play none none reverse"
+            },
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            stagger: 0.2
+        });
+
+        gsap.from("#hobbies .grid > div", {
+            scrollTrigger: {
+                trigger: "#hobbies",
+                start: "top center",
+                toggleActions: "play none none reverse"
+            },
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            stagger: 0.2
+        });
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+
+</html>
